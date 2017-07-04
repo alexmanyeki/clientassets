@@ -1,15 +1,15 @@
 // Custom Bikini Map
 
   $(document).ready(function() {
-    $('.map').css({'pointer-events':'none'});
+    $('.map-modal').css({'pointer-events':'none'});
   });
 
   $('.close-map-icon').click(function() {
-    $('.map').css({'pointer-events':'none'});
+    $('.map-modal').css({'pointer-events':'none'});
   });
 
   $('#mapTriggerMenu,#mapTriggerFooter').click(function() {
-    $('.map').css({'pointer-events':'all'});
+    $('.map-modal').css({'pointer-events':'all'});
   });
 
   $(document).ready(function() {
@@ -282,11 +282,11 @@
 
   $(document).ready(function(){
     $(".section-link").hover(function() {
-      $(this).children('.responsive-image').css({
+      $(this).children('.responsive-image-dark').css({
         'filter': 'brightness(100%)','-webkit-filter': 'brightness(100%)','-moz-filter': 'brightness(100%)','-o-filter': 'brightness(100%)','-ms-filter': 'brightness(100%)'
       });
     }, function() {
-      $(this).children('.responsive-image').css({
+      $(this).children('.responsive-image-dark').css({
         'filter': 'brightness(65%)','-webkit-filter': 'brightness(65%)','-moz-filter': 'brightness(65%)','-o-filter': 'brightness(65%)','-ms-filter': 'brightness(65%)'
       });
     });
@@ -315,7 +315,7 @@
 
   $(document).ready(function() {
       
-    $('#groupSize,#preferredPeriod,#preferredTime,#preferredDateLoaded').attr('readonly','readonly');
+    $('#groupSize,#preferredPeriod,#preferredTime,#preferredDate,#preferredDateLoaded').attr('tabindex','-1'); //make the default webflow select inputs unfocusable
     $('phone').attr('type','tel');
       
     $('[data-select="groupsize"]').click(function(e) { //update group size on click
@@ -331,8 +331,13 @@
       $('#preferredTime').val($(this).text()); 
     });
     
-    $("#preferredDate").change(function() { //use a hardcoded input to load the webflow date input
-         $("#preferredDateLoaded").val($(this).val());
+    $("#preferredDate").change(function() { //use a hardcoded input to load the webflow date input & change to human friendly format
+        var m_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        var oldDate = new Date($(this).val());
+        var d = oldDate.getDate();
+        var m =  oldDate.getMonth();
+        var y = oldDate.getFullYear();
+        $("#preferredDateLoaded").val(d + " " + m_names[m] + " " + y);
     });
     
     $(function() {
@@ -500,9 +505,15 @@
     if(typeof HTMLElement!=="undefined"){HTMLCollection.prototype.flatpickr=NodeList.prototype.flatpickr=function(config){return _flatpickr(this,config)};HTMLElement.prototype.flatpickr=function(config){return _flatpickr([this],config)}}
     function flatpickr(selector,config){if(selector instanceof NodeList)return _flatpickr(selector,config);else if(!(selector instanceof HTMLElement))return _flatpickr(window.document.querySelectorAll(selector),config);return _flatpickr([selector],config)}
     flatpickr.defaultConfig=FlatpickrInstance.defaultConfig={mode:"single",position:"auto",animate:window.navigator.userAgent.indexOf("MSIE")===-1,wrap:!1,weekNumbers:!1,allowInput:!1,clickOpens:!0,closeOnSelect:!0,time_24hr:!1,enableTime:!1,noCalendar:!1,dateFormat:"Y-m-d",ariaDateFormat:"F j, Y",altInput:!1,altInputClass:"form-control input",altFormat:"F j, Y",defaultDate:null,minDate:null,maxDate:null,parseDate:null,formatDate:null,getWeek:function getWeek(givenDate){var date=new Date(givenDate.getTime());var onejan=new Date(date.getFullYear(),0,1);return Math.ceil(((date-onejan)/86400000+onejan.getDay()+1)/7)},enable:[],disable:[],shorthandCurrentMonth:!1,inline:!1,"static":!1,appendTo:null,prevArrow:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z' /></svg>",nextArrow:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",enableSeconds:!1,hourIncrement:1,minuteIncrement:5,defaultHour:12,defaultMinute:0,disableMobile:!1,locale:"default",plugins:[],ignoredFocusElements:[],onClose:undefined,onChange:undefined,onDayCreate:undefined,onMonthChange:undefined,onOpen:undefined,onParseConfig:undefined,onReady:undefined,onValueUpdate:undefined,onYearChange:undefined,onKeyDown:undefined,onDestroy:undefined};flatpickr.l10ns={en:{weekdays:{shorthand:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],longhand:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},months:{shorthand:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],longhand:["January","February","March","April","May","June","July","August","September","October","November","December"]},daysInMonth:[31,28,31,30,31,30,31,31,30,31,30,31],firstDayOfWeek:0,ordinal:function ordinal(nth){var s=nth%100;if(s>3&&s<21)return "th";switch(s%10){case 1:return "st";case 2:return "nd";case 3:return "rd";default:return "th"}},rangeSeparator:" to ",weekAbbreviation:"Wk",scrollTitle:"Scroll to increment",toggleTitle:"Click to toggle"}};flatpickr.l10ns.default=Object.create(flatpickr.l10ns.en);flatpickr.localize=function(l10n){return _extends(flatpickr.l10ns.default,l10n||{})};flatpickr.setDefaults=function(config){return _extends(flatpickr.defaultConfig,config||{})};if(typeof jQuery!=="undefined"){jQuery.fn.flatpickr=function(config){return _flatpickr(this,config)}}
-    Date.prototype.fp_incr=function(days){return new Date(this.getFullYear(),this.getMonth(),this.getDate()+parseInt(days,10))};if(typeof module!=="undefined")module.exports=flatpickr ;
+    Date.prototype.fp_incr=function(days){return new Date(this.getFullYear(),this.getMonth(),this.getDate()+parseInt(days,10))};if(typeof module!=="undefined")module.exports=flatpickr
     
-    $("#preferredDate").flatpickr("minDate":"today","inline":"true");
+    $("#preferredDate").flatpickr({
+        altInput: true,
+        minDate: "today",
+        inline: true
+    });
+
+
                                   
                                   
                                   
