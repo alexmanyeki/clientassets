@@ -1,0 +1,4 @@
+#newsletterForm input::placeholder { color:#bec7da; }
+#newsletterForm input::-webkit-input-placeholder { color: #bec7da; }
+#newsletterForm input:-moz-placeholder { color: #bec7da; }
+#newsletterForm input:-ms-input-placeholder { color: #bec7da; }
