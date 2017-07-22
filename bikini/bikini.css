@@ -25,6 +25,7 @@ input[readonly] {background-color: transparent !important; visibility: none;}
     -ms-touch-action: manipulation;
     touch-action: manipulation;
 }
+
 .flatpickr-calendar.open,
 .flatpickr-calendar.inline {
     opacity: 1;
