@@ -1,0 +1,111 @@
+.chat {pointer-events: none;}
+.chat-embed {pointer-events: all;}
+.progress-bar-wrapper {opacity: 0;}
+.w-dropdown-toggle {white-space: normal !important;}
+
+@media screen and (min-width:991px){
+    .home-image:not(.last),.home-image-7-wrapper {
+        top: 0;
+        right: 0;
+        position: fixed !important; 
+        pointer-events: none !important;
+    }
+}
+
+body > #chatlio-widget.embed-inline-container {display: none !important}
+.chatlio-widget {font-size: 14px !important; font-family: inherit !important;}
+.chatlio-title-bar, .chatlio-powered-by, .chatlio-title-bar.chatlio-title-bar-button {display:none !important;}
+.chatlio-message-container {top: 15px !important}
+.chatlio-new-message,.chatlio-new-message-small {
+    margin-bottom: 15px !important;
+    border-style: none none solid !important;
+    border-bottom-width: 2px !important;
+    border-bottom-color: #c5c5c5 !important;
+    background-color: transparent !important;
+    border-radius: 0px !important;
+    font-family: inherit !important;
+}
+
+#chatlio-widget .chatlio-message-from-me .chatlio-message-timestamp { margin: 0 15px !important; }
+#chatlio-widget .chatlio-message-from-them .chatlio-message-author-tiny, #chatlio-widget .chatlio-message-from-them .chatlio-message-timestamp {
+    margin-left: calc( 3.4em + 10px ) !important;
+}
+
+#chatlio-widget .chatlio-message-avatar img {  top: 0 !important; }
+
+#chatlio-widget .chatlio-btn-container { display: none !important; }
+
+#chatlio-widget .chatlio-new-message-container-small {
+    border-top: 0px transparent !important;
+    background-color: #fff !important;
+    padding: 15px !important;
+}
+
+.chatlio-widget .chatlio-offline-message-container {
+    padding: 15px !important;
+}
+#chatlio-widget .chatlio-message {
+    overflow-y: hidden !important;
+    margin-bottom: 5px !important;
+}
+
+#chatlio-widget .chatlio-message-container {
+    height: calc(100% - 80px) !important;
+}
+
+#chatlio-widget .chatlio-new-message-container {
+    border-top-color: transparent !important;
+    background-color: #fff !important;
+    bottom: 0px !important;
+}
+
+#chatlio-widget .chatlio-message-from-them .chatlio-message-content {
+    background-color: transparent !important;
+    border: 0px transparent !important;
+    border-radius: 0px !important;
+}
+
+#chatlio-widget .chatlio-message-from-me .chatlio-message-content {
+  background-color: transparent !important;
+  border: 0px transparent !important;
+  border-radius: 0px !important;
+  text-align: right !important;
+}
+
+#at4-share, #at4-soc {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  -webkit-transform: translateY(-50%) !important;
+
+}
+
+.subscribe-form-field::-webkit-input-placeholder {color: white;}
+.subscribe-form-field::-moz-placeholder {color: white;}
+.subscribe-form-field:-ms-input-placeholder {color: white;}
+.subscribe-form-field:-moz-placeholder {color: white;}
+
+.edition-slide img {
+  pointer-events: none;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.w-slider-dot {
+    background-color: transparent !important;
+    color: grey !important;
+}
+
+.w-slider-dot.w-active {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.w-slider-nav.w-num>div {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 10px !important;
+}
