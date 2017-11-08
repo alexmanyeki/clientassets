@@ -1,5 +1,5 @@
 //===================================
-//Vimeo Video API
+//Chatlio Dependencies
 //===================================
 
 window._chatlio = window._chatlio||[];
