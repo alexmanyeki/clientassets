@@ -63,6 +63,7 @@ body > #chatlio-widget.embed-inline-container {display: none !important}
     background-color: transparent !important;
     border: 0px transparent !important;
     border-radius: 0px !important;
+    margin-left: 45px !important;
 }
 
 #chatlio-widget .chatlio-message-from-me .chatlio-message-content {
@@ -70,6 +71,25 @@ body > #chatlio-widget.embed-inline-container {display: none !important}
   border: 0px transparent !important;
   border-radius: 0px !important;
   text-align: right !important;
+}
+
+.chatlio-widget .chatlio-offline-message-container {
+    margin-top: 37% !important;
+    padding-right: 40px !important;
+    padding-left: 40px !important;
+}
+
+#chatlio-widget .chatlio-message-avatar img {
+    height: 40px !important;
+    width: 40px !important;
+}
+
+.chatlio-missed-you-message {
+    padding: 0 !important;
+}
+
+#chatlio-widget .chatlio-message-from-them .chatlio-message-author-tiny {
+    margin-left: 56px !important;
 }
 
 #at4-share, #at4-soc {
