@@ -1,3 +1,7 @@
+//===================================
+//Vimeo Video API
+//===================================
+
 window._chatlio = window._chatlio||[];
 !function(){ var t=document.getElementById("chatlio-widget-embed");if(t&&window.ChatlioReact&&_chatlio.init)return void _chatlio.init(t,ChatlioReact);for(var e=function(t){return function(){_chatlio.push([t].concat(arguments)) }},i=["configure","identify","track","show","hide","isShown","isOnline", "page"],a=0;a<i.length;a++)_chatlio[i[a]]||(_chatlio[i[a]]=e(i[a]));var n=document.createElement("script"),c=document.getElementsByTagName("script")[0];n.id="chatlio-widget-embed",n.src="https://w.chatlio.com/w.chatlio-widget.js",n.async=!0,n.setAttribute("data-embed-version","2.2");
 n.setAttribute('data-widget-options', '{"embedInline": true}');
@@ -6,19 +10,12 @@ c.parentNode.insertBefore(n,c);
 }();
 
 
-//===================================
-//Vimeo Video API
-//===================================
-
-;(function($,window){var vimeoJqueryAPI={catchMethods:{methodreturn:[],count:0},init:function(d){var vimeoVideo,vimeoAPIurl,data;if(!d.originalEvent.origin.match(/vimeo/g)){return;} if(!("data"in d.originalEvent)){return;} data=$.type(d.originalEvent.data)==="string"?$.parseJSON(d.originalEvent.data):d.originalEvent.data;if(!data){return;} vimeoVideo=this.setPlayerID(data);if(vimeoVideo.length){vimeoAPIurl=this.setVimeoAPIurl(vimeoVideo);if(data.hasOwnProperty("event")) this.handleEvent(data,vimeoVideo,vimeoAPIurl);if(data.hasOwnProperty("method")) this.handleMethod(data,vimeoVideo,vimeoAPIurl);}},setPlayerID:function(d){return $("iframe[src*="+d.player_id+"]");},setVimeoAPIurl:function(d){if(d.attr('src').substr(0,4)!=='http'){return'https:'+d.attr('src').split('?')[0];}else{return d.attr('src').split('?')[0];}},handleMethod:function(d,vid,api){this.catchMethods.methodreturn.push(d.value);},handleEvent:function(d,vid,api){switch(d.event.toLowerCase()){case'ready':for(var prop in $._data(vid[0],"events")){if(prop.match(/loadProgress|playProgress|play|pause|finish|seek|cuechange/)){vid[0].contentWindow.postMessage(JSON.stringify({method:'addEventListener',value:prop}),api);}} if(vid.data("vimeoAPICall")){var vdata=vid.data("vimeoAPICall");for(var i=0;i<vdata.length;i++){vid[0].contentWindow.postMessage(JSON.stringify(vdata[i].message),vdata[i].api);} vid.removeData("vimeoAPICall");} vid.data("vimeoReady",true);vid.triggerHandler("ready");break;case'seek':vid.triggerHandler("seek",[d.data]);break;case'loadprogress':vid.triggerHandler("loadProgress",[d.data]);break;case'playprogress':vid.triggerHandler("playProgress",[d.data]);break;case'pause':vid.triggerHandler("pause");break;case'finish':vid.triggerHandler("finish");break;case'play':vid.triggerHandler("play");break;case'cuechange':vid.triggerHandler("cuechange");break;}}};var loadIframe=$.fn.vimeoLoad=function(){var url=$(this).attr('src');if(url.match(/player_id/g)===null){var firstSeperator=(url.indexOf('?')===-1?'?':'&');var param=$.param({"api":1,"player_id":"vvvvimeoVideo-"+Math.floor((Math.random()*10000000)+1).toString()});$(this).attr("src",url+firstSeperator+param);} return this;};jQuery(document).ready(function(){$("iframe[src*='vimeo.com']").each(function(){loadIframe.call(this);});});$(window).on("message",function(e){vimeoJqueryAPI.init(e);});$.vimeo=function(element,option1,option2){var message={},catchMethodLength=vimeoJqueryAPI.catchMethods.methodreturn.length;if(typeof option1==="string") message.method=option1;if(typeof option2!==undefined&&typeof option2!=="function") message.value=option2;if(element.prop("tagName").toLowerCase()==='iframe'&&message.hasOwnProperty("method")){if(element.data("vimeoReady")){element[0].contentWindow.postMessage(JSON.stringify(message),vimeoJqueryAPI.setVimeoAPIurl(element));}else{var _data=element.data("vimeoAPICall")?element.data("vimeoAPICall"):[];_data.push({message:message,api:vimeoJqueryAPI.setVimeoAPIurl(element)});element.data("vimeoAPICall",_data);}} if((option1.toString().substr(0,3)==="get"||option1.toString()==="paused")&&typeof option2==="function"){(function(cml,func,i){var interval=window.setInterval(function(){if(vimeoJqueryAPI.catchMethods.methodreturn.length!=cml){window.clearInterval(interval);func(vimeoJqueryAPI.catchMethods.methodreturn[i]);}},10);})(catchMethodLength,option2,vimeoJqueryAPI.catchMethods.count);vimeoJqueryAPI.catchMethods.count++;} return element;};$.fn.vimeo=function(option1,option2){return $.vimeo(this,option1,option2);};})(jQuery,window);
-
-
 //====================================
 //Declare Webflow IX for all functions that require it
 //====================================
 
-
 var ix = Webflow.require('ix');
+
 
 //====================================
 //Start Document Ready
@@ -58,36 +55,21 @@ $(document).ready(function () {
     }
     });
 
-    var secNav = $('.sections-nav,.progress-bar-wrapper');
+    var secNav = $('.progress-bar-wrapper');
     var showSecNav = {"type":"load","stepsA":[{"display":"block"},{"wait":"1ms"},{"opacity":1,"transition":"opacity 350ms ease 0"}],"stepsB":[]};
     var hideSecNav = {"type":"load","stepsA":[{"opacity":0,"transition":"opacity 100ms ease 0"},{"wait":"1ms"},{"display":"none"}],"stepsB":[]};
     var winH = $(window).height(); // Get the window height.
-    var winH2 = ($(window).height() * 1.005 );
+//    var winH2 = ($(window).height() * 1.005 );
 
     $(window).scroll(function () {
-    if ($(this).scrollTop() >= winH ) {
-      ix.run(showSecNav, secNav);
-      $('.chat').css({'width':'350px','min-width':'350px','position':'fixed','top':'0px','right':'-665px'});
-      $('.chat-embed').css('height','450px');
-    } else {
-      ix.run(hideSecNav, secNav);
-      $('.chat').css({'width':'660px','min-width':'660px','position':'static','top':'','right':''});
-      $('.chat-embed').css('height','600px');
-    }
-    }).resize(function (){ // If the user resizes the window
-    winH = $(this).height(); // get the new height value
+        if ($(this).scrollTop() >= winH) {
+            ix.run(showSecNav, secNav);
+        } else {
+            ix.run(hideSecNav, secNav);
+        }
+    }).resize(function () { // If the user resizes the window
+        winH = $(this).height(); // get the new height value
     });
-
-    $(window).scroll(function () {
-    if ($(this).scrollTop() >= winH2 ) {
-      $('.chat').css('right','calc((50% - 380px)/2 )');
-    } else {
-      $('.chat').css('right','-425px');
-    }
-    }).resize(function (){ // If the user resizes the window
-    winH2 = ($(this).height() * 1.005 ); // get the new height value
-    });
-
 
     $('.choice-triggers').each(function () {
         $(this).click(function () {
@@ -102,19 +84,26 @@ $(document).ready(function () {
 
     $(window).scroll(function() {
 
-    var $scrollPrompt = $('.scroll-prompt');
+        var $scrollPrompt = $('.scroll-prompt');
+        var $logo = $('#navHome,.sections-nav');
 
-    var elementHide = {"type":"scroll","stepsA":[{"opacity":0,"transition":"opacity 200 ease 0"},{"wait":"1ms"},{"display":"none"}],"stepsB":[]};
-    var elementShow = {"type":"scroll","stepsA":[{"display":"block"},{"wait":"1ms"},{"opacity":1,"transition":"opacity 200 ease 0"}],"stepsB":[]};
+        var elementHide = {"type":"scroll","stepsA":[{"opacity":0,"transition":"opacity 200 ease 0"},{"wait":"1ms"},{"display":"none"}],"stepsB":[]};
+        var elementShow = {"type":"scroll","stepsA":[{"display":"block"},{"wait":"1ms"},{"opacity":1,"transition":"opacity 200 ease 0"}],"stepsB":[]};
 
-    //Hide Arrow Down on Scrolling 30px Using Webflow's Native IX
-    if ($(this).scrollTop() >= 30) {
-        ix.run(elementHide, $scrollPrompt);
-    } else {
-        ix.run(elementShow, $scrollPrompt);
-    }
+        //Hide Arrow Down on Scrolling 30px Using Webflow's Native IX
+        if ($(this).scrollTop() >= 30) {
+            ix.run(elementHide, $scrollPrompt);
+        } else {
+            ix.run(elementShow, $scrollPrompt);
+        }
+        //Show or hide home logo on scroll
+        if ($(this).scrollTop() >= (winH / 3.5)) {
+            ix.run(elementShow, $logo);
+        } else {
+            ix.run(elementHide, $logo);
+        }
     });
-
+  
     
     $("div.progress-bar-title").text(function (index, currentText) {
         return currentText.substr(0, 70) + '...';
