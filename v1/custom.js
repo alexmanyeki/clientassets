@@ -9,6 +9,10 @@ n.setAttribute('data-widget-id','5c828c61-935b-4e2a-55d7-8ae21decc52f');
 c.parentNode.insertBefore(n,c);
 }();
 
+document.addEventListener('chatlio.ready', function (e) {
+    $('#chatlio-widget .chatlio-message-avatar img').attr('src','https://daks2k3a4ib2z.cloudfront.net/594c186396962151a16cf268/5a035cc3dd8d200001e53da7_chat_avatar.png');
+}, false);
+
 
 //====================================
 //Declare Webflow IX for all functions that require it
@@ -22,6 +26,7 @@ var ix = Webflow.require('ix');
 //====================================
 
 $(document).ready(function () {
+    
     var nC = $('.choice-neutral');
     var aC = $('.choice-a');
     var bC = $('.choice-b');
@@ -137,6 +142,12 @@ $(document).ready(function () {
                 onclick: ""
             });
             $('.addthis_button_more').show();
+        }
+    });
+    
+    $('.no-slider-post').each(function () {
+        if ( $(this).text().indexOf('{{@post.empty}}') > -1 ) {
+            $(this).closest('.w-slide').remove();
         }
     });
 
