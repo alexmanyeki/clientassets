@@ -20,26 +20,9 @@ if (typeof Object.create !== 'function') {
 
         var defaults = {
             plugin_folder: '', // a folder in which the plugin is located (with a slash in the end)
-            template: '<div class="post-wrapper dt-create="{{=it.dt_create}}" social-feed-id = "{{=it.id}}"> \
-          <div class="post"> \
-              <div class="post-media">{{=it.attachment}}</div> \
-              <div class="post-content"> \
-                  <div class="post-head w-clearfix"> \
-					  <i class="fa fa-{{=it.social_network}} icon-posthead"></i> \
-                      <p class="posthead-user"><a href="{{=it.link}}" class="inline-link user">{{=it.author_name}}</a></p> \
-                  </div> \
-                  <p class="post-body">{{=it.text}}</p> \
-                  <div class="post-footer w-clearfix"> \
-                      <i class="fa fa-clock-o icon-posthead"></i> \
-                      <p class="posthead-user">{{=it.time_ago}}</p> \
-                      <p class="post-read-more"><a href="{{=it.link}}" class="inline-link post">read more</a> \
-                      </p> \
-                  </div> \
-              </div> \
-          </div> \
-		</div>', // a path to the template file
+            template: 'template.html', // a path to the template file
             show_media: false, // show images of attachments if available
-            media_min_width: 300,
+            media_min_width: 100,
             length: 500, // maximum length of post message shown
             date_format: 'll'
         };
