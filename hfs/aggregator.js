@@ -304,8 +304,15 @@ if (typeof Object.create !== 'function') {
                             post.link = 'http://twitter.com/' + element.user.screen_name + '/status/' + element.id_str;
 
                             if (options.show_media === true) {
+                                var elementEntities = {};
                                 if (element.entities.media && element.entities.media.length > 0) {
-                                    var image_url = element.entities.media[0].media_url_https;
+                                    elementEntities = element.entities;
+                                } else if (element.retweeted_status && element.retweeted_status.extended_entities && element.retweeted_status.extended_entities.media && element.retweeted_status.extended_entities.media.length > 0) {
+                                    elementEntities = element.retweeted_status.extended_entities;
+                                }
+
+                                if (elementEntities.media && elementEntities.media.length > 0) {
+                                    var image_url = elementEntities.media[0].media_url;
                                     if (image_url) {
                                         post.attachment = '<img class="attachment" src="' + image_url + '" />';
                                     }
