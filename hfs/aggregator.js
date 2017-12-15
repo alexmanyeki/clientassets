@@ -1,11 +1,3 @@
-// new rendering system  https://github.com/pavelk2/social-feed/pull/171
-// new callback fix https://github.com/pavelk2/social-feed/pull/173
-// New RSS implementation to get Images from RSS feed
-// fix staging_resource for facebook 
-// #01 - Fix deprecated  $(img).load(function() 20/07/2016
-// #02 - Fix multilanguage twitter date 20/07/2016
-
-
 if (typeof Object.create !== 'function') {
     Object.create = function(obj) {
         function F() {}
@@ -304,15 +296,8 @@ if (typeof Object.create !== 'function') {
                             post.link = 'http://twitter.com/' + element.user.screen_name + '/status/' + element.id_str;
 
                             if (options.show_media === true) {
-                                var elementEntities = {};
                                 if (element.entities.media && element.entities.media.length > 0) {
-                                    elementEntities = element.entities;
-                                } else if (element.retweeted_status && element.retweeted_status.extended_entities && element.retweeted_status.extended_entities.media && element.retweeted_status.extended_entities.media.length > 0) {
-                                    elementEntities = element.retweeted_status.extended_entities;
-                                }
-
-                                if (elementEntities.media && elementEntities.media.length > 0) {
-                                    var image_url = elementEntities.media[0].media_url;
+                                    var image_url = element.entities.media[0].media_url_https;
                                     if (image_url) {
                                         post.attachment = '<img class="attachment" src="' + image_url + '" />';
                                     }
