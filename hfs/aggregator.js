@@ -1,3 +1,11 @@
+// new rendering system  https://github.com/pavelk2/social-feed/pull/171
+// new callback fix https://github.com/pavelk2/social-feed/pull/173
+// New RSS implementation to get Images from RSS feed
+// fix staging_resource for facebook 
+// #01 - Fix deprecated  $(img).load(function() 20/07/2016
+// #02 - Fix multilanguage twitter date 20/07/2016
+
+
 if (typeof Object.create !== 'function') {
     Object.create = function(obj) {
         function F() {}
@@ -14,7 +22,7 @@ if (typeof Object.create !== 'function') {
             plugin_folder: '', // a folder in which the plugin is located (with a slash in the end)
             template: 'template.html', // a path to the template file
             show_media: false, // show images of attachments if available
-            media_min_width: 100,
+            media_min_width: 300,
             length: 500, // maximum length of post message shown
             date_format: 'll'
         };
