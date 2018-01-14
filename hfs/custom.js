@@ -378,29 +378,23 @@ $(document).ready(function () {
         $('#donateForm').submit(function () {
             event.preventDefault();
 
-            var name = encodeURIComponent($('#donateName').val().trim()),
-                email = $('#donateEmail').val().trim();
+            var firstName = encodeURIComponent( $('#donateFirstName').val().trim() ),
+                lastName = encodeURIComponent( $('#donateLastName').val().trim() ),
+                email = $('#donateEmail').val().trim(),
+                phone = $('#donatePhone').val().trim(),
+                employer = encodeURIComponent ( $('#donateEmployer').val().trim() ),
+                occupation = encodeURIComponent ( $('#donateOccupation').val().trim() ),
+                formAmount = $('.form-amount').val();
 
             if ($('.form-amount').val() === '') {
                 $('.donate-error').fadeIn('slow');
-            } else if ($('.custom-donate-field').val().length > 0) {
-                var formAmount = $('.custom-donate-field').val();
-
+            } 
+            else {
                 $('.donate-error').fadeOut('slow');
                 $('#donateBtn').val('validating...');
 
                 setTimeout(function () {
-                    location.href = 'https://plasso.com/s/Rqgy4ki62s?name=' + name + '&email=' + email + '&price=' + formAmount;
-                }, 2000);
-                $('#donateBtn').val('redirecting...');
-            } else {
-                var formAmount = $('.form-amount').val();
-
-                $('.donate-error').fadeOut('slow');
-                $('#donateBtn').val('validating...');
-
-                setTimeout(function () {
-                    location.href = 'https://plasso.com/s/GsfnDYZ02p?name=' + name + '&email=' + email + '&preselect=donate_' + formAmount + '&show_products=donate_' + formAmount;
+                    location.href = 'https://secure.anedot.com/housleyforsenate/donate?first_name=' + firstName + '&last_name=' + lastName + '&email=' + email + '&phone=' + phone + '&employer=' + employer + '&occupation=' + occupation + '&amount=' + formAmount;
                 }, 2000);
                 $('#donateBtn').val('redirecting...');
             }
