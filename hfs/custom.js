@@ -235,7 +235,7 @@ $(document).ready(function () {
         animationEffect: "zoom-in-out"
     });
 
-    $('.custom-donate-field').attr('type', 'number');
+    $('input[data-fieldtype="number"]').attr('type', 'number');
 
     $('.donate-select').each(function () {
         $(this).click(function () {
@@ -378,13 +378,16 @@ $(document).ready(function () {
         $('#donateForm').submit(function () {
             event.preventDefault();
 
-            var firstName = encodeURIComponent( $('#donateFirstName').val().trim() ),
+            var formAmount = $('.form-amount').val(),
+                firstName = encodeURIComponent( $('#donateFirstName').val().trim() ),
                 lastName = encodeURIComponent( $('#donateLastName').val().trim() ),
                 email = $('#donateEmail').val().trim(),
                 phone = $('#donatePhone').val().trim(),
-                employer = encodeURIComponent ( $('#donateEmployer').val().trim() ),
                 occupation = encodeURIComponent ( $('#donateOccupation').val().trim() ),
-                formAmount = $('.form-amount').val();
+                employer = encodeURIComponent ( $('#donateEmployer').val().trim() ),
+                address = encodeURIComponent ( $('#donateAddress').val().trim() ),
+                city = encodeURIComponent ( $('#donateCity').val().trim() ),
+                zip = $('#donateZip').val().trim();
 
             if ($('.form-amount').val() === '') {
                 $('.donate-error').fadeIn('slow');
@@ -394,7 +397,7 @@ $(document).ready(function () {
                 $('#donateBtn').val('validating...');
 
                 setTimeout(function () {
-                    location.href = 'https://secure.anedot.com/housleyforsenate/donate?first_name=' + firstName + '&last_name=' + lastName + '&email=' + email + '&phone=' + phone + '&employer=' + employer + '&occupation=' + occupation + '&amount=' + formAmount;
+                    location.href = 'https://secure.anedot.com/housleyforsenate/donate?amount=' + formAmount + '&first_name=' + firstName + '&last_name=' + lastName + '&email=' + email + '&phone=' + phone + '&occupation=' + occupation + '&employer=' + employer + '&address=' + address + '&city=' + city + '&zip=' + zip ;
                 }, 2000);
                 $('#donateBtn').val('redirecting...');
             }
