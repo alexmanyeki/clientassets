@@ -74,7 +74,7 @@ body > #chatlio-widget.embed-inline-container {display: none !important}
 }
 
 .chatlio-widget .chatlio-offline-message-container {
-    margin-top: 37% !important;
+    margin-top: 32% !important;
     padding-right: 40px !important;
     padding-left: 40px !important;
 }
@@ -128,4 +128,22 @@ body > #chatlio-widget.embed-inline-container {display: none !important}
     width: 36px !important;
     height: 36px !important;
     padding: 0 10px !important;
+}
+
+.blog-focus-blur::before {  
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-image: url("http://uploads.webflow.com/594c186396962151a16cf268/594c29a2816484498a4d5fe8_m7%402x.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    content: "";
+    filter: url("http://uploads.webflow.com/594c186396962151a16cf268/594c29a2816484498a4d5fe8_m7%402x.jpg");
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+    opacity: .7
 }
