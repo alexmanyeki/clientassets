@@ -150,6 +150,9 @@ $(document).ready(function () {
             $(this).closest('.w-slide').remove();
         }
     });
+    
+    
+    
 
 });
 
@@ -168,6 +171,26 @@ $(window).load(function(){
 });
 
 
+$(function () {
+    $('#subForm').submit(function (e) {
+        e.preventDefault();
+        $.getJSON(
+            this.action + "?callback=?",
+            $(this).serialize(),
+            function (data) {
+                var showSuccess = {"type":"click","stepsA":[{"display":"flex"},{"wait":"1ms"},{"opacity":1,"transition":"opacity 350ms ease 0"}],"stepsB":[]};
+                var fadeUpSuccess = {"type":"click","stepsA":[{"transition":"transform 350ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]};
+                
+                if (data.Status === 400) {
+                    alert("Error: " + data.Message);
+                } else { // 200
+                    //alert("Success: " + data.Message);
+                    ix.run(showSuccess, $('.subscription-success'));
+                    ix.run(hideSecNav, $('.success-message-wrapper'));
+                }
+            });
+    });
+});
 
 //=============================================================
 // Fixed Scroll Dependecies and Functions
