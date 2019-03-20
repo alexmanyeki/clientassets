@@ -1,0 +1,27 @@
+.Header {
+  background: $color-navy;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-bottom: $space-header-offset;
+  &-superhead {
+    @include small-caps;
+    color: white;
+    line-height: 1;
+    font-size: $font-size-0;
+    margin-bottom: $baseline-5;
+  }
+  &-pageTitle {
+    font-size: $font-size-4;
+    color: white;
+    line-height: 1;
+    text-transform: capitalize;
+  }
+  &-text {
+    padding-top: $space-7;
+    padding-bottom: $space-8;
+  }
+  &-spacer {
+    height: $space-8;
+  }
+}

@@ -1,0 +1,12 @@
+{% if include.name == "about" %}
+  {% assign promotion_url = "https://www.bugsnag.com/product/" %}
+{% elsif include.name == "hiring" %}
+  {% assign promotion_url = "https://www.bugsnag.com/jobs/" %}
+{% endif %}
+<a href="{{promotion_url}}" class="PostCard PostCard--small">
+  <div class="PostCard-cardWrap">
+    <div class="PostCard-card Card">
+      <img class="Promotion" src="/img/promotions/{{include.name}}.png" alt="{{include.name}} illustration"/>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,31 @@
+@for $i from 0 through $space-scale-max {
+  $val: ms($i, $space-ms-base, $space-ms-root);
+  .u-paddingTop-#{$i} {
+    padding-top: $val !important;
+  }
+  .u-paddingBottom-#{$i} {
+    padding-bottom: $val !important;
+  }
+  .u-paddingVertical-#{$i} {
+    padding-top: $val !important;
+    padding-bottom: $val !important;
+  }
+  .u-marginTop-#{$i} {
+    margin-top: $val !important;
+  }
+  .u-marginBottom-#{$i} {
+    margin-bottom: $val !important;
+  }
+  .u-marginVertical-#{$i} {
+    margin-top: $val !important;
+    margin-bottom: $val !important;
+  }
+}
+
+.u-height100 {
+  height: 100% !important;
+}
+
+.u-width100 {
+  width: 100% !important;
+}

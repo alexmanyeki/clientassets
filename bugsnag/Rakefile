@@ -1,0 +1,35 @@
+desc 'Run a development version of the site optimized for speed'
+task :serve_dev do
+  sh 'bundle exec jekyll serve --config _config.dev.yml'
+end
+
+desc 'Run a development version of the site using the production config'
+task :serve do
+  sh 'bundle exec jekyll serve'
+end
+
+namespace :posts do
+  desc 'Create a new post'
+  task :new, :title do |t, args|
+    raise "Specify a title: rake posts:new['an awesome blog post']" unless args.title
+    today = Time.new.strftime("%Y-%m-%d")
+    filename = File.join("_posts", "#{today}-#{args.title.tr(' ', '-').downcase}.md")
+    File.open(filename, "w") do |post|
+      post.puts("---")
+      post.puts("layout: post")
+      post.puts("title: #{args.title}")
+      post.puts("publish_date: #{Time.new.strftime("%B %-d, %Y")}")
+      post.puts("author_name: <add me>")
+      post.puts("author_twitter: <add me>")
+      post.puts("author_avatar: <add me>")
+      post.puts("excerpt: <add me>")
+      post.puts("categories: <add me>")
+      post.puts("---")
+      post.puts()
+    end
+
+    puts "Created #{filename}"
+  end
+end
+
+task :default => ["serve_dev"]

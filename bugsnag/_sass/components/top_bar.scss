@@ -1,0 +1,160 @@
+.TopBar {
+  $mobileBreakpoint: $breakpoint-2;
+  $linkPadding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: $baseline-8;
+  padding-bottom: $baseline-8;
+  padding-left: columns(2);
+  padding-right: columns(2);
+  z-index: 1000;
+  position: relative;
+  @media (min-width: 1400px) {
+    padding-left: columns(3);
+    padding-right: columns(3);
+  }
+  &-logoWrap {
+    margin-left: -$linkPadding;
+    margin-right: auto;
+    padding: 0 $linkPadding;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  &-logo {
+    width: 11.5rem;
+    vertical-align: middle;
+    position: relative;
+    top: -.1rem;
+  }
+  &-links {
+    margin-right: -$linkPadding;
+    margin-left: auto;
+    color: color(grey, 4);
+    transition: color .4s;
+    z-index: 1;
+    display: flex;
+    &.is-active {
+      color: color(grey, 6);
+    }
+    .TopBar--light & {
+      color: hsla(0,0,100, .95);
+    }
+  }
+  &-link {
+    color: inherit;
+    line-height: $topBarStickyHeight;
+    padding: 0 $linkPadding;
+    text-decoration: none;
+    transition: color .2s;
+    display: none;
+    @media (min-width: $breakpoint-2) {
+      display: block;
+    }
+    &:hover {
+      color: color(grey, 1);
+      -webkit-font-smoothing: subpixel-antialiased;
+      .TopBar--light & {
+        color: hsla(0,0,100, .75);
+        -webkit-font-smoothing: inherit;
+      }
+    }
+    &.is-active {
+      color: color(grey, 0);
+      position: relative;
+      -webkit-font-smoothing: subpixel-antialiased;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: color(orange, 0);
+      }
+    }
+  }
+  &-signIn {
+    display: block;
+  }
+  &-button, &-getStarted {
+    margin: auto 0 auto 1rem;
+  }
+  &-hamburger {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-image: url('/images/hamburger.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.7;
+    z-index: 1;
+    &--light {
+      background-image: url('/images/hamburger_light.svg');
+    }
+    &.is-active {
+      background-image: url('/images/x.svg');
+    }
+    @media (min-width: $mobileBreakpoint) {
+      display: none !important;
+    }
+  }
+  &-dashboard {
+    display: none !important;
+  }
+  &--sticky {
+    padding-top:0;
+    padding-bottom:0;
+    height: $topBarStickyHeight;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    transform: translateY(-100%);
+    opacity: 0;
+    z-index: 1000;
+    transition: 220ms cubic-bezier(0.4, 0.0, 1, 1);
+    transition-property: transform, opacity;
+    &.is-sticky {
+      transform: translateY(0);
+      opacity: 1;
+      transition: 180ms cubic-bezier(0.0, 0.0, 0.2, 1);
+      &:after {
+        content: "";
+        top: 0;
+        position: fixed;
+        z-index: -1;
+        height: $topBarStickyHeight;
+        width: 104%;
+        left: -2%;
+        box-shadow: $elevation-4;
+      }
+    }
+  }
+}
+
+.hamburger-is-open {
+  .TopBar--sticky.is-sticky::after {
+    box-shadow: none;
+  }
+
+  .TopBar::before {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    transition-delay: 0s;
+  }
+}
+
+.is-logged-in {
+  .TopBar {
+    &-signIn {
+      display: none !important;
+    }
+
+    &-dashboard {
+      display: block !important;
+    }
+  }
+}

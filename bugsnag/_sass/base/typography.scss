@@ -1,0 +1,24 @@
+$ms-base: .8rem 1rem;
+$ms-root: 1.618;
+
+$font-fallback: -apple-system, BlinkMacSystemFont,  "avenir", "lucida grande", "gill sans", "helvetica neue", "helvetica", sans-serif;
+$font-default: "brown", $font-fallback;
+
+$font-ms-base: .8rem 1rem;
+$font-ms-root: 1.618;
+$font-size-0: ms(0, $font-ms-base, $font-ms-root);
+$font-size-1: ms(1, $font-ms-base, $font-ms-root);
+$font-size-2: ms(2, $font-ms-base, $font-ms-root);
+$font-size-3: ms(3, $font-ms-base, $font-ms-root);
+$font-size-4: ms(4, $font-ms-base, $font-ms-root);
+$font-size-5: ms(5, $font-ms-base, $font-ms-root);
+$font-size-6: ms(6, $font-ms-base, $font-ms-root);
+
+$font-size-pricing: .9rem;
+$font-size-tiny: .7rem;
+
+@mixin small-caps {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 600;
+}

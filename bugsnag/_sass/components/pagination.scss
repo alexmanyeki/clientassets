@@ -1,0 +1,14 @@
+.Pagination {
+  padding: $space-9 0 0;
+  display: flex;
+  justify-content: center;
+  &-link {
+    @include small-caps;
+    padding: 0 1rem;
+    line-height: $baseline-8;
+    color: $color-indigo-2;
+    &:hover {
+      opacity: .7;
+    }
+  }
+}

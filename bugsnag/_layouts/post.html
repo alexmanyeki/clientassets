@@ -1,0 +1,100 @@
+---
+layout: base
+---
+
+
+{% include TopBar.html modifier="dark" %}
+
+<div class="Post">
+
+  <!-- Hero images and default pattern -->
+  {% if page.hero_image %}
+    <div class="HeroImage">
+      <img class="HeroImage-img" src='/img/feature/{{page.hero_image}}' alt="illustration for {{ page.title }} blog post" />
+      {% if page.cover_image %}
+        <img class="HeroImage-cover" src='/img/feature/{{page.cover_image}}' alt="illustration for {{ page.title }} blog post" />
+      {% else %}
+        <img class="HeroImage-cover" src='/img/feature/{{page.hero_image}}' alt="illustration for {{ page.title }} blog post" />
+      {% endif %}
+    </div>
+  {% else %}
+    {% capture default_artwork %}{% assign_artwork page.url %}{% endcapture %}
+    <img class="HeroImage-img" src='/img/patterns/pattern_header-{{default_artwork}}.png' alt="illustration for {{ page.title }} blog post" />
+    <img class="HeroImage-cover" src='/img/patterns/pattern-{{default_artwork}}.jpg' alt="illustration for {{ page.title }} blog post" />
+  {% endif %}
+
+
+  <!-- header-->
+  <div class="Post-grid">
+    <div class="Post-header">
+      <a class="Post-superhead" href='{{ "/category/" | append: page.categories.first }}/'>
+        {{ page.categories.first }}
+        {% if page.read_time_minutes %}
+          &nbsp;|&nbsp;{{page.read_time_minutes}} min read
+        {% endif %}
+      </a>
+      <h1 class="Post-title">{{ page.title }}</h1>
+      <a class="Post-attribution" href="http://www.twitter.com/{{ page.author_twitter }}" target="_blank">
+        {% if page.author_avatar %}
+          <div>
+            <img class="Post-authorImage" src="{{ site.baseurl}}/img/authors/{{ page.author_avatar }}.jpg" alt="author-image" />
+          </div>
+        {% endif %}
+        <div class="Post-attributionText">
+          {% if page.author_name %}
+            <div class="Post-authorName">{{ page.author_name }}</div>
+          {% endif %}
+          <div class="Post-publishDate">{{ page.publish_date }}</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="Post-body">
+    <div class="Post-content">
+      {{ content }}
+    </div>
+    <div class="Post-socialLinks">
+      <span class="Post-socialLinkLabel">Share</span>
+      <a class="Post-socialLink Post-socialLink--facebook" target="_blank" href="http://www.facebook.com/share.php?u={{ site.url | append: page.url | uri_escape }}&amp;title={{ page.title | uri_escape }}"></a>
+      <a class="Post-socialLink Post-socialLink--twitter" target="_blank" href="https://twitter.com/share?text={{ page.title | uri_escape }}&amp;url={{ site.url | append: page.url | uri_escape }}"></a>
+      <a class="Post-socialLink Post-socialLink--hackernews" target="_blank" href="http://news.ycombinator.com/submitlink?u={{ site.url | append: page.url | uri_escape }}&amp;t={{ page.title | uri_escape }}"></a>
+      <a class="Post-socialLink Post-socialLink--linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url | append: page.url | uri_escape }}&amp;title={{ page.title | uri_escape }}&amp;summary={{ page.excerpt | strip_html | truncate: 135 | uri_escape }}"></a>
+    </div>
+    <div class="Post-cta">
+      <p class="Post-cta">
+      <a href="https://app.bugsnag.com/user/new" target="_blank"><img src="/img/promotions/blog-trial-cta.png" class="Post-cta"></a>
+    </p>
+  </div>
+    <div class="Grid">
+      <div class="Post-footer">
+        <div class="Post-footerHeader">More from Bugsnag</div>
+        <div class="Index-cards Index-cards--noOffset">
+          {% include promotion.html name="about" %}
+          {% assign maxRelated = 4 %}
+          {% assign minCommonTags =  1 %}
+          {% assign maxRelatedCounter = 0 %}
+          {% for post in site.posts %}
+            {% assign sameTagCount = 0 %}
+            {% for category in post.categories %}
+              {% if post.url != page.url %}
+                {% if page.categories contains category %}
+                  {% assign sameTagCount = sameTagCount | plus: 1 %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            {% if sameTagCount >= minCommonTags %}
+              {% include post-card.html size="small" %}
+              {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+              {% if maxRelatedCounter >= maxRelated %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% include promotion.html name="hiring" %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

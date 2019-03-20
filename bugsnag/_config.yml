@@ -1,0 +1,26 @@
+# Site settings
+title: Bugsnag Blog
+email: hello@bugsnag.com
+description: Updates, announcements and articles from the Bugsnag team!
+url: "https://blog.bugsnag.com"
+permalink: /:title/
+paginate: 12
+paginate_path: "/page/:num/"
+show_drafts: true
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+sass:
+  style: compressed
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-last-modified-at # for setting "last modified" times in the sitemap
+  - xxhash

@@ -1,0 +1,7 @@
+.Card {
+  box-shadow: $elevation-3;
+  border-radius: $border-radius;
+  &-content {
+    background: white;
+  }
+}

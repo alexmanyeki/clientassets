@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+
+gem 'aws-sdk'
+gem 'jekyll'
+gem 'jekyll-feed'
+gem 'jekyll-paginate'
+gem 'jekyll-last-modified-at'
+gem 'jekyll-sitemap'
+gem 'rack-jekyll'
+gem 'rake'
+gem 'slack-notifier'
+gem 'xxhash'
+gem 'rouge'
