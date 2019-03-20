@@ -7,6 +7,7 @@ permalink: /:title/
 paginate: 12
 paginate_path: "/page/:num/"
 show_drafts: true
+name: Bugsnag Blog
 
 # Build settings
 markdown: kramdown
