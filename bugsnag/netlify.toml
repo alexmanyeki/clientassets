@@ -1,5 +1,0 @@
-[context.deploy-preview]
-  command = "make deploy_preview"
-
-[context.branch-deploy]
-  command = "make deploy_preview"
